@@ -20,6 +20,46 @@
     <div class="sub">
       UTC calendar timer. Resets on cross-border wars (interstate / region-to-region). Civil wars excluded.
     </div>
+async function loadConflicts(){
+  const statusEl = document.getElementById("conflictsStatus");
+  const bodyEl = document.getElementById("conflictsBody");
+
+  try{
+    const res = await fetch("./conflicts.json", { cache: "no-store" });
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    const items = await res.json();
+
+    bodyEl.innerHTML = "";
+    if(!Array.isArray(items) || items.length === 0){
+      statusEl.textContent = "No active conflicts detected (or not enough signals yet).";
+      return;
+    }
+
+    statusEl.textContent = `Showing ${Math.min(items.length, 30)} items.`;
+
+    for(const c of items.slice(0, 30)){
+      const links = (c.top_links || []).slice(0, 3).map(x =>
+        `<div><a href="${x.url}" target="_blank" rel="noopener" style="color:#7aa2ff;text-decoration:none">${(x.title||'link').slice(0,80)}</a></div>`
+      ).join("");
+
+      const tr = document.createElement("tr");
+      tr.style.borderBottom = "1px solid rgba(255,255,255,.08)";
+      tr.innerHTML = `
+        <td style="padding:10px 6px"><b>${c.pair || ""}</b></td>
+        <td style="padding:10px 6px"><code>${c.last_seen_at || ""}</code></td>
+        <td style="padding:10px 6px">${c.articles_6h ?? ""}</td>
+        <td style="padding:10px 6px">${c.sources_6h ?? ""}</td>
+        <td style="padding:10px 6px">${links}</td>
+      `;
+      bodyEl.appendChild(tr);
+    }
+  }catch(e){
+    statusEl.textContent = "Failed to load conflicts.json";
+  }
+}
+
+loadConflicts();
+setInterval(loadConflicts, 5 * 60 * 1000);
 
     <div class="card">
       <div>Last reset at (UTC): <code id="lastResetAt">2026-02-28T10:20:00Z</code></div>
