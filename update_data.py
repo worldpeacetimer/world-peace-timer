@@ -122,12 +122,13 @@ def make_pair(entities):
 def main():
     now = utc_now()
     state = load_json(STATE_PATH, {"last_reset_at": iso_z(now), "last_reset_pair": "None", "evidence": []})
-last_reset_at = datetime.fromisoformat(state["last_reset_at"].replace("Z", "+00:00"))
+    last_reset_at = datetime.fromisoformat(state["last_reset_at"].replace("Z", "+00:00"))
     cooldown_ok = (now - last_reset_at) > timedelta(hours=RESET_COOLDOWN_HOURS)
 
     # 构造查询（关键词 OR）
     kw_q = " OR ".join([f'"{k}"' for k in KEYWORDS])
     query = f"({kw_q})"
+
 
     # 拉取 3 小时窗口：用于 reset
     start_reset = now - timedelta(hours=WINDOW_RESET_HOURS)
