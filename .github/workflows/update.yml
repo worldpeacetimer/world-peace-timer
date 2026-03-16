@@ -1,0 +1,33 @@
+name: Update GDELT Data
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # every 5 minutes (UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run updater
+        run: |
+          python update_data.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "worldpeacetimer-bot"
+          git config user.email "actions@github.com"
+          git add state.json conflicts.json
+          git diff --cached --quiet || git commit -m "auto: update data"
+          git push
