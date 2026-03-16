@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>World Peace Timer</title>
+  <style>
+    body{margin:0;background:#0b1020;color:#e9eefc;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    .wrap{max-width:900px;margin:0 auto;padding:40px 18px}
+    h1{margin:0 0 10px;font-size:30px}
+    .sub{color:#9aa7c7;font-size:14px;line-height:1.5;margin-bottom:18px}
+    .card{background:#111a33;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px}
+    .timer{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:44px;letter-spacing:1px;margin:10px 0}
+    code{font-family:ui-monospace,Menlo,Consolas,monospace}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>WORLD PEACE TIMER</h1>
+    <div class="sub">
+      UTC calendar timer. Resets on cross-border wars (interstate / region-to-region). Civil wars excluded.
+    </div>
+
+    <div class="card">
+      <div>Last reset at (UTC): <code id="lastResetAt">2026-02-28T10:20:00Z</code></div>
+      <div class="timer" id="peaceTimer">Loading…</div>
+    </div>
+  </div>
+
+<script>
+  const lastResetAtISO = document.getElementById("lastResetAt").textContent.trim();
+
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function parseUTC(iso){
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) throw new Error("Invalid ISO: " + iso);
+    return d;
+  }
+  function addYearsUTC(d, years){ const nd=new Date(d.getTime()); nd.setUTCFullYear(nd.getUTCFullYear()+years); return nd; }
+  function addMonthsUTC(d, months){ const nd=new Date(d.getTime()); nd.setUTCMonth(nd.getUTCMonth()+months); return nd; }
+
+  function calendarDiffUTC(startISO, nowDate){
+    let start = parseUTC(startISO);
+    let now = nowDate || new Date();
+    if (start > now) start = now;
+
+    let cursor = start;
+    let years = 0;
+    while (addYearsUTC(cursor, 1) <= now) { cursor = addYearsUTC(cursor, 1); years++; }
+
+    let months = 0;
+    while (addMonthsUTC(cursor, 1) <= now) { cursor = addMonthsUTC(cursor, 1); months++; }
+
+    const remSec = Math.floor((now.getTime() - cursor.getTime()) / 1000);
+    const days = Math.floor(remSec / 86400);
+    const hours = Math.floor((remSec % 86400) / 3600);
+    const minutes = Math.floor((remSec % 3600) / 60);
+    const seconds = remSec % 60;
+
+    return { years, months, days, hours, minutes, seconds };
+  }
+
+  function formatTimer(d){
+    return `${d.years}y ${d.months}mo ${d.days}d ${pad2(d.hours)}:${pad2(d.minutes)}:${pad2(d.seconds)}`;
+  }
+
+  const timerEl = document.getElementById("peaceTimer");
+  function tick(){
+    const diff = calendarDiffUTC(lastResetAtISO, new Date());
+    timerEl.textContent = formatTimer(diff);
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
