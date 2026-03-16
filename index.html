@@ -12,120 +12,160 @@
     .card{background:#111a33;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px}
     .timer{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:44px;letter-spacing:1px;margin:10px 0}
     code{font-family:ui-monospace,Menlo,Consolas,monospace}
+    table{width:100%;border-collapse:collapse;font-size:14px}
+    th,td{padding:10px 6px;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top}
+    th{color:#9aa7c7;text-align:left;font-weight:600}
+    a{color:#7aa2ff;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .small{color:#9aa7c7;font-size:12px}
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <h1>WORLD PEACE TIMER</h1>
     <div class="sub">
       UTC calendar timer. Resets on cross-border wars (interstate / region-to-region). Civil wars excluded.
+      <div class="small">Automated signals. False positives/negatives may occur.</div>
     </div>
-async function loadConflicts(){
-  const statusEl = document.getElementById("conflictsStatus");
-  const bodyEl = document.getElementById("conflictsBody");
 
-  try{
-    const res = await fetch("./conflicts.json", { cache: "no-store" });
-    if(!res.ok) throw new Error("HTTP " + res.status);
-    const items = await res.json();
-
-    bodyEl.innerHTML = "";
-    if(!Array.isArray(items) || items.length === 0){
-      statusEl.textContent = "No active conflicts detected (or not enough signals yet).";
-      return;
-    }
-
-    statusEl.textContent = `Showing ${Math.min(items.length, 30)} items.`;
-
-    for(const c of items.slice(0, 30)){
-      const links = (c.top_links || []).slice(0, 3).map(x =>
-        `<div><a href="${x.url}" target="_blank" rel="noopener" style="color:#7aa2ff;text-decoration:none">${(x.title||'link').slice(0,80)}</a></div>`
-      ).join("");
-
-      const tr = document.createElement("tr");
-      tr.style.borderBottom = "1px solid rgba(255,255,255,.08)";
-      tr.innerHTML = `
-        <td style="padding:10px 6px"><b>${c.pair || ""}</b></td>
-        <td style="padding:10px 6px"><code>${c.last_seen_at || ""}</code></td>
-        <td style="padding:10px 6px">${c.articles_6h ?? ""}</td>
-        <td style="padding:10px 6px">${c.sources_6h ?? ""}</td>
-        <td style="padding:10px 6px">${links}</td>
-      `;
-      bodyEl.appendChild(tr);
-    }
-  }catch(e){
-    statusEl.textContent = "Failed to load conflicts.json";
-  }
-}
-
-loadConflicts();
-setInterval(loadConflicts, 5 * 60 * 1000);
-
+    <!-- Timer card -->
     <div class="card">
       <div>Last reset at (UTC): <code id="lastResetAt">2026-02-28T10:20:00Z</code></div>
       <div class="timer" id="peaceTimer">Loading…</div>
     </div>
+
+    <!-- Conflicts card -->
+    <div class="card" style="margin-top:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+        <div><b>Active cross-border conflicts</b></div>
+        <div class="small">Auto-updated (GDELT)</div>
+      </div>
+
+      <div id="conflictsStatus" class="small" style="margin:8px 0 10px">
+        Loading conflicts…
+      </div>
+
+      <div style="overflow:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Pair</th>
+              <th>Last seen (UTC)</th>
+              <th>Articles</th>
+              <th>Sources</th>
+              <th>Links</th>
+            </tr>
+          </thead>
+          <tbody id="conflictsBody"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
-<script>
-let lastResetAtISO = document.getElementById("lastResetAt").textContent.trim();
+  <script>
+    // ---------- Timer (UTC calendar diff: years/months are calendar units) ----------
+    let lastResetAtISO = document.getElementById("lastResetAt").textContent.trim();
 
-async function loadState(){
-  try{
-    const res = await fetch("./state.json", { cache: "no-store" });
-    if(!res.ok) return;
-    const s = await res.json();
-    if(s.last_reset_at){
-      document.getElementById("lastResetAt").textContent = s.last_reset_at;
-      lastResetAtISO = s.last_reset_at;
+    function pad2(n){ return String(n).padStart(2,'0'); }
+    function parseUTC(iso){
+      const d = new Date(iso);
+      if (isNaN(d.getTime())) throw new Error("Invalid ISO: " + iso);
+      return d;
     }
-  }catch(e){}
-}
+    function addYearsUTC(d, years){ const nd=new Date(d.getTime()); nd.setUTCFullYear(nd.getUTCFullYear()+years); return nd; }
+    function addMonthsUTC(d, months){ const nd=new Date(d.getTime()); nd.setUTCMonth(nd.getUTCMonth()+months); return nd; }
 
-loadState();
-setInterval(loadState, 60 * 1000);
+    function calendarDiffUTC(startISO, nowDate){
+      let start = parseUTC(startISO);
+      let now = nowDate || new Date();
+      if (start > now) start = now;
 
-  function pad2(n){ return String(n).padStart(2,'0'); }
-  function parseUTC(iso){
-    const d = new Date(iso);
-    if (isNaN(d.getTime())) throw new Error("Invalid ISO: " + iso);
-    return d;
-  }
-  function addYearsUTC(d, years){ const nd=new Date(d.getTime()); nd.setUTCFullYear(nd.getUTCFullYear()+years); return nd; }
-  function addMonthsUTC(d, months){ const nd=new Date(d.getTime()); nd.setUTCMonth(nd.getUTCMonth()+months); return nd; }
+      let cursor = start;
+      let years = 0;
+      while (addYearsUTC(cursor, 1) <= now) { cursor = addYearsUTC(cursor, 1); years++; }
 
-  function calendarDiffUTC(startISO, nowDate){
-    let start = parseUTC(startISO);
-    let now = nowDate || new Date();
-    if (start > now) start = now;
+      let months = 0;
+      while (addMonthsUTC(cursor, 1) <= now) { cursor = addMonthsUTC(cursor, 1); months++; }
 
-    let cursor = start;
-    let years = 0;
-    while (addYearsUTC(cursor, 1) <= now) { cursor = addYearsUTC(cursor, 1); years++; }
+      const remSec = Math.floor((now.getTime() - cursor.getTime()) / 1000);
+      const days = Math.floor(remSec / 86400);
+      const hours = Math.floor((remSec % 86400) / 3600);
+const minutes = Math.floor((remSec % 3600) / 60);
+      const seconds = remSec % 60;
 
-    let months = 0;
-    while (addMonthsUTC(cursor, 1) <= now) { cursor = addMonthsUTC(cursor, 1); months++; }
+      return { years, months, days, hours, minutes, seconds };
+    }
 
-    const remSec = Math.floor((now.getTime() - cursor.getTime()) / 1000);
-    const days = Math.floor(remSec / 86400);
-    const hours = Math.floor((remSec % 86400) / 3600);
-    const minutes = Math.floor((remSec % 3600) / 60);
-    const seconds = remSec % 60;
+    function formatTimer(d){
+      return `${d.years}y ${d.months}mo ${d.days}d ${pad2(d.hours)}:${pad2(d.minutes)}:${pad2(d.seconds)}`;
+    }
 
-    return { years, months, days, hours, minutes, seconds };
-  }
+    const timerEl = document.getElementById("peaceTimer");
+    function tick(){
+      const diff = calendarDiffUTC(lastResetAtISO, new Date());
+      timerEl.textContent = formatTimer(diff);
+    }
 
-  function formatTimer(d){
-    return `${d.years}y ${d.months}mo ${d.days}d ${pad2(d.hours)}:${pad2(d.minutes)}:${pad2(d.seconds)}`;
-  }
+    // ---------- Load state.json ----------
+    async function loadState(){
+      try{
+        const res = await fetch("./state.json", { cache: "no-store" });
+        if(!res.ok) return;
+        const s = await res.json();
+        if(s.last_reset_at){
+          document.getElementById("lastResetAt").textContent = s.last_reset_at;
+          lastResetAtISO = s.last_reset_at;
+        }
+      }catch(e){}
+    }
 
-  const timerEl = document.getElementById("peaceTimer");
-  function tick(){
-    const diff = calendarDiffUTC(lastResetAtISO, new Date());
-    timerEl.textContent = formatTimer(diff);
-  }
-  tick();
-  setInterval(tick, 1000);
-</script>
+    // ---------- Load conflicts.json ----------
+    async function loadConflicts(){
+      const statusEl = document.getElementById("conflictsStatus");
+      const bodyEl = document.getElementById("conflictsBody");
+
+      try{
+        const res = await fetch("./conflicts.json", { cache: "no-store" });
+        if(!res.ok) throw new Error("HTTP " + res.status);
+        const items = await res.json();
+
+        bodyEl.innerHTML = "";
+        if(!Array.isArray(items) || items.length === 0){
+          statusEl.textContent = "No active conflicts detected (or not enough signals yet).";
+          return;
+        }
+
+        statusEl.textContent = `Showing ${Math.min(items.length, 30)} items.`;
+
+        for(const c of items.slice(0, 30)){
+          const links = (c.top_links || []).slice(0, 3).map(x =>
+            `<div><a href="${x.url}" target="_blank" rel="noopener">${(x.title||'link').slice(0,80)}</a></div>`
+          ).join("");
+
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td><b>${c.pair || ""}</b></td>
+            <td><code>${c.last_seen_at || ""}</code></td>
+            <td>${c.articles_6h ?? ""}</td>
+            <td>${c.sources_6h ?? ""}</td>
+            <td>${links}</td>
+          `;
+          bodyEl.appendChild(tr);
+        }
+      }catch(e){
+        statusEl.textContent = "Failed to load conflicts.json";
+      }
+    }
+
+    // initial + intervals
+    loadState();
+    loadConflicts();
+    tick();
+
+    setInterval(tick, 1000);
+    setInterval(loadState, 60 * 1000);
+    setInterval(loadConflicts, 5 * 60 * 1000);
+  </script>
 </body>
 </html>
