@@ -1,0 +1,4 @@
+.vercel/
+REFRESH_TOKEN.txt
+.env*
+node_modules/

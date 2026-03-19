@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>World Peace Timer</title>
+  <style>
+    :root{
+      --bg0:#070b16;
+      --bg1:#0b1224;
+      --card:#0f1a33;
+      --card2:#0c1730;
+      --text:#e7eefc;
+      --muted:#95a6c7;
+      --line:rgba(255,255,255,.10);
+      --accent:#6ea8ff;
+      --ok:#3fe1b6;
+      --warn:#ffcc66;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(110,168,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 80% 0%, rgba(63,225,182,.10), transparent 55%),
+        radial-gradient(900px 600px at 50% 110%, rgba(110,168,255,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100vh;
+    }
+
+    .wrap{ max-width: 980px; margin: 0 auto; padding: 38px 18px 60px; }
+
+    header{ text-align:center; margin-bottom: 18px; }
+    h1{ margin: 0; letter-spacing: .06em; font-size: 22px; font-weight: 800; }
+    .subtitle{ margin-top: 6px; font-size: 12px; line-height: 1.4; color: var(--muted); }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .timer-card{ margin: 18px auto 14px; }
+    .timer-head{
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .timer-head .label{ color: var(--muted); font-size: 12px; }
+    .timer-head .value{ font-family: var(--mono); font-size: 12px; color: var(--text); opacity:.95; }
+
+    .timer-body{ padding: 18px; }
+    #peaceTimer{
+      font-family: var(--mono);
+      font-size: 42px;
+      letter-spacing: .02em;
+      text-align:left;
+      font-variant-numeric: tabular-nums;
+    }
+    .hint{ margin-top: 10px; color: var(--muted); font-size: 12px; }
+
+    .grid{ display:grid; grid-template-columns: 1fr; gap: 12px; }
+
+    .table-card{ margin-top: 12px; }
+    .table-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .table-title{ font-size: 13px; font-weight: 700; }
+    .table-meta{ font-size: 11px; color: var(--muted); }
+
+    table{ width:100%; border-collapse: collapse; }
+    th, td{ padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,.07); }
+    th{ text-align:left; font-size: 11px; color: var(--muted); font-weight: 600; }
+    td{ font-size: 12px; }
+
+    .pill{ display:inline-flex; align-items:center; gap:8px; }
+    .dot{ width:8px; height:8px; border-radius: 99px; background: var(--ok); box-shadow: 0 0 0 4px rgba(63,225,182,.12); }
+
+    .links a{ color: var(--accent); text-decoration: none; }
+    .links a:hover{ text-decoration: underline; }
+
+    .empty{
+      padding: 16px 18px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 520px){
+      #peaceTimer{ font-size: 34px; }
+      th, td{ padding: 10px 12px; }
+      .timer-head, .timer-body{ padding: 14px 12px; }
+      .table-head{ padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>WORLD PEACE TIMER</h1>
+      <div class="subtitle">
+        UTC calendar timer. Resets on cross-border wars (interstate / region-to-region). Civil wars excluded.<br>
+        Automated signals. False positives/negatives may occur.
+      </div>
+    </header>
+
+    <section class="card timer-card">
+      <div class="timer-head">
+        <div class="label">Last reset at (UTC): <span class="value" id="lastResetLabel">—</span></div>
+        <div class="label">Now (UTC): <span class="value" id="nowUtcLabel">—</span></div>
+      </div>
+      <div class="timer-body">
+        <div id="peaceTimer">—</div>
+        <div class="hint">Format: <span class="value">{years}y {months}mo {days}d HH:MM:SS</span></div>
+      </div>
+    </section>
+
+    <section class="card table-card">
+      <div class="table-head">
+        <div class="table-title">Active cross-border conflicts</div>
+        <div class="table-meta">Auto-updated <span id="autoUpdatedTz">(UTC)</span></div>
+      </div>
+
+      <div id="conflictsEmpty" class="empty" hidden>
+        No active conflicts detected (or not enough signals yet).
+      </div>
+
+      <div style="overflow:auto;">
+        <table id="conflictsTable" aria-label="Active conflicts">
+          <thead>
+            <tr>
+              <th style="min-width:160px;">Pair</th>
+              <th style="min-width:160px;">Last seen (UTC)</th>
+              <th style="min-width:90px;">Articles</th>
+              <th style="min-width:90px;">Sources</th>
+              <th style="min-width:220px;">Links</th>
+            </tr>
+          </thead>
+          <tbody id="conflictsTbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+<script>
+  // ====== CONFIG ======
+  // Set this to your last reset timestamp (ISO-8601, preferably with Z).
+  const lastResetAtISO = "2026-02-28T10:20:00Z";
+
+  // Live mode: pull from /api/status (Vercel Serverless Function)
+  // Response: { isWarNow, peaceStartAtISO, activeConflicts:[{pair,lastSeenISO,articles,sources,links:[]}], updatedAtISO }
+  let statusCache = null;
+
+  // ====== UTIL ======
+  const pad2 = (n) => String(n).padStart(2, "0");
+
+  function formatUtc(dt){
+    const y = dt.getUTCFullYear();
+    const m = pad2(dt.getUTCMonth()+1);
+    const d = pad2(dt.getUTCDate());
+    const hh = pad2(dt.getUTCHours());
+    const mm = pad2(dt.getUTCMinutes());
+    const ss = pad2(dt.getUTCSeconds());
+    return `${y}-${m}-${d}T${hh}:${mm}:${ss}Z`;
+  }
+
+  // Calendar diff in UTC: counts whole years/months, then uses seconds remainder for d/h/m/s.
+  function calendarDiffUTC(startISO, endDate){
+    const start = new Date(startISO);
+    const end = endDate instanceof Date ? endDate : new Date(endDate);
+
+    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
+      return { years:0, months:0, days:0, hours:0, minutes:0, seconds:0 };
+    }
+
+    if (end < start) return { years:0, months:0, days:0, hours:0, minutes:0, seconds:0 };
+
+    let cursor = new Date(Date.UTC(
+      start.getUTCFullYear(),
+      start.getUTCMonth(),
+      start.getUTCDate(),
+      start.getUTCHours(),
+      start.getUTCMinutes(),
+      start.getUTCSeconds()
+    ));
+
+    let years = 0, months = 0;
+
+    while (true) {
+      const next = new Date(Date.UTC(
+        cursor.getUTCFullYear() + 1,
+        cursor.getUTCMonth(),
+        cursor.getUTCDate(),
+        cursor.getUTCHours(),
+        cursor.getUTCMinutes(),
+        cursor.getUTCSeconds()
+      ));
+      if (next <= end) { cursor = next; years++; } else break;
+    }
+
+    while (true) {
+      const next = new Date(Date.UTC(
+        cursor.getUTCFullYear(),
+        cursor.getUTCMonth() + 1,
+        cursor.getUTCDate(),
+        cursor.getUTCHours(),
+        cursor.getUTCMinutes(),
+        cursor.getUTCSeconds()
+      ));
+      if (next <= end) { cursor = next; months++; } else break;
+    }
+
+    const remSec = Math.floor((end.getTime() - cursor.getTime()) / 1000);
+    const days = Math.floor(remSec / 86400);
+    const hours = Math.floor((remSec % 86400) / 3600);
+    const minutes = Math.floor((remSec % 3600) / 60);
+    const seconds = remSec % 60;
+
+    return { years, months, days, hours, minutes, seconds };
+  }
+
+  function formatTimer(d){
+    return `${d.years}y ${d.months}mo ${d.days}d ${pad2(d.hours)}:${pad2(d.minutes)}:${pad2(d.seconds)}`;
+  }
+
+  // ====== TIMER RENDER ======
+  const timerEl = document.getElementById("peaceTimer");
+  const lastResetLabelEl = document.getElementById("lastResetLabel");
+  const nowUtcLabelEl = document.getElementById("nowUtcLabel");
+
+  function getPeaceStartISO(){
+    // If war is ongoing, timer stays at 0, but we still show the last peaceStartAt we know.
+    return (statusCache && statusCache.peaceStartAtISO) ? statusCache.peaceStartAtISO : lastResetAtISO;
+  }
+
+  function tick(){
+    const now = new Date();
+    nowUtcLabelEl.textContent = formatUtc(now);
+
+    const isWarNow = !!(statusCache && statusCache.isWarNow);
+    if (isWarNow) {
+      timerEl.textContent = "0y 0mo 0d 00:00:00";
+      return;
+    }
+
+    const startISO = getPeaceStartISO();
+    const diff = calendarDiffUTC(startISO, now);
+    timerEl.textContent = formatTimer(diff);
+  }
+
+  // init labels
+  lastResetLabelEl.textContent = lastResetAtISO;
+  tick();
+  setInterval(tick, 1000);
+
+  // ====== TABLE RENDER ======
+  const emptyEl = document.getElementById("conflictsEmpty");
+  const tbody = document.getElementById("conflictsTbody");
+  const table = document.getElementById("conflictsTable");
+
+  function renderConflicts(rows){
+    tbody.innerHTML = "";
+
+    if (!rows || rows.length === 0) {
+      emptyEl.hidden = false;
+      table.style.display = "none";
+      return;
+    }
+
+    emptyEl.hidden = true;
+    table.style.display = "table";
+
+    for (const r of rows) {
+      const tr = document.createElement("tr");
+
+      const tdPair = document.createElement("td");
+      tdPair.innerHTML = `<span class="pill"><span class="dot"></span><span>${escapeHtml(r.pair ?? "—")}</span></span>`;
+
+      const tdLast = document.createElement("td");
+      tdLast.style.fontFamily = "var(--mono)";
+      tdLast.textContent = r.lastSeenISO ? String(r.lastSeenISO) : "—";
+
+      const tdArticles = document.createElement("td");
+      tdArticles.textContent = (r.articles ?? "—");
+
+      const tdSources = document.createElement("td");
+      tdSources.textContent = (r.sources ?? "—");
+
+      const tdLinks = document.createElement("td");
+      tdLinks.className = "links";
+      if (Array.isArray(r.links) && r.links.length) {
+        tdLinks.innerHTML = r.links.map(l => `<a href="${escapeAttr(l.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.label ?? l.url)}</a>`).join(" · ");
+      } else {
+        tdLinks.textContent = "—";
+      }
+
+      tr.appendChild(tdPair);
+      tr.appendChild(tdLast);
+      tr.appendChild(tdArticles);
+      tr.appendChild(tdSources);
+      tr.appendChild(tdLinks);
+      tbody.appendChild(tr);
+    }
+  }
+
+  function escapeHtml(s){
+    return String(s)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+  function escapeAttr(s){
+    // conservative attr escaping
+    return escapeHtml(s).replaceAll("`", "&#96;");
+  }
+
+  async function refreshStatus(){
+    try {
+      const resp = await fetch("/api/status", { cache: "no-store" });
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      statusCache = await resp.json();
+
+      // Update labels: show the effective reset/peace start time
+      if (statusCache && statusCache.peaceStartAtISO) {
+        lastResetLabelEl.textContent = statusCache.peaceStartAtISO;
+      }
+
+      renderConflicts(statusCache.activeConflicts || []);
+    } catch (e) {
+      // On failure: keep last known state, but show empty list (or keep old list)
+      console.warn("refreshStatus failed", e);
+    }
+  }
+
+  // initial + periodic refresh
+  refreshStatus();
+  setInterval(refreshStatus, 30000);
+</script>
+</body>
+</html>

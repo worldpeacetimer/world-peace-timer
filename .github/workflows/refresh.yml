@@ -1,0 +1,21 @@
+name: Refresh world peace timer
+
+on:
+  schedule:
+    # Every 10 minutes
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call refresh endpoint
+        env:
+          REFRESH_URL: ${{ secrets.REFRESH_URL }}
+        run: |
+          if [ -z "$REFRESH_URL" ]; then
+            echo "Missing REFRESH_URL secret";
+            exit 1;
+          fi
+          curl -sS -L "$REFRESH_URL" | head -c 2000
