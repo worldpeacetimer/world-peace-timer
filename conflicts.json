@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "pair": "Iran vs Israel",
+    "last_seen_at": null,
+    "articles_6h": 5,
+    "sources_6h": 5,
+    "score": 15,
+    "top_links": [
+      {
+        "title": "Israel threatens a surge in attacks as Iran fires missiles farther than ever",
+        "url": "https://economictimes.indiatimes.com/news/defence/israel-threatens-a-surge-in-attacks-as-iran-fires-missiles-farther-than-ever/articleshow/129720181.cms"
+      },
+      {
+        "title": "Israel threatens a surge in attacks as Iran fires missiles farther – NBC Los Angeles",
+        "url": "https://www.nbclosangeles.com/news/national-international/israel-threatens-surge-in-attacks-iran-missiles/3864702/"
+      },
+      {
+        "title": "Israel threatens a surge in attacks as Iran fires missiles farther – NBC10 Philadelphia",
+        "url": "https://www.nbcphiladelphia.com/news/national-international/israel-threatens-surge-in-attacks-iran-missiles/4372116/"
+      },
+      {
+        "title": "Israel threatens a surge in attacks as Iran fires missiles farther than ever | Politics and Government",
+        "url": "https://www.reviewjournal.com/news/politics-and-government/israel-threatens-a-increase-in-attacks-as-iran-fires-missiles-farther-than-ever-before-3727876/"
+      },
+      {
+        "title": "Israel threatens a surge in attacks as Iran fires missiles farther than ever",
+        "url": "https://www.idahopress.com/news/world/israel-threatens-a-surge-in-attacks-as-iran-fires-missiles-farther-than-ever/article_d527048f-6801-5233-b68a-73dcbdbb1e64.html"
+      }
+    ]
+  }
+]
