@@ -27,5 +27,34 @@
         "url": "https://www.nbcphiladelphia.com/news/national-international/israel-threatens-surge-in-attacks-iran-missiles/4372116/"
       }
     ]
+  },
+  {
+    "pair": "Iran vs US",
+    "last_seen_at": null,
+    "articles_6h": 5,
+    "sources_6h": 5,
+    "score": 15,
+    "top_links": [
+      {
+        "title": "Iran denies role in reported missile attempt on Diego Garcia as US weighs ground invasion options",
+        "url": "https://economictimes.indiatimes.com/news/defence/iran-denies-role-in-reported-missile-attempt-on-diego-garcia-as-us-weighs-ground-invasion-options/articleshow/129727890.cms"
+      },
+      {
+        "title": "Iran denies role in reported missile attempt on Diego Garcia as US weighs ground invasion options",
+        "url": "https://news.webindia123.com/news/Articles/World/20260322/4430098.html"
+      },
+      {
+        "title": "Iran denies role in reported missile attempt on Diego Garcia as US weighs ground invasion options",
+        "url": "https://aninews.in/news/world/middle-east/iran-denies-role-in-reported-missile-attempt-on-diego-garcia-as-us-weighs-ground-invasion-options20260322085844/"
+      },
+      {
+        "title": "US  Degrades  Threats To Hormuz Traffic As Iran Longest - Range Missile Strike Fails ; Kharg Invasion Risk Rising",
+        "url": "https://www.zerohedge.com/geopolitical/irans-longest-range-missile-strike-fails-diego-garcia-natanz-nuclear-facility-bombed"
+      },
+      {
+        "title": "Trump signals winding down Iran ops as US sends more troops",
+        "url": "https://www.rediff.com/news/report/trump-signals-winding-down-iran-ops-as-us-sends-more-troops/20260321.htm"
+      }
+    ]
   }
 ]
