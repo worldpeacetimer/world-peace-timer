@@ -353,8 +353,7 @@
 
   // initial + periodic refresh
   refreshStatus();
-  // Refresh from our own cached status (KV-backed). Safe to poll more frequently.
-  setInterval(refreshStatus, 60000);
+  setInterval(refreshStatus, 30000);
 </script>
 </body>
 </html>
