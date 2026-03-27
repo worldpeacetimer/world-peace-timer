@@ -1,39 +1,10 @@
 [
   {
-    "pair": "Israel vs Lebanon",
-    "last_seen_at": null,
-    "articles_6h": 9,
-    "sources_6h": 9,
-    "score": 27,
-    "top_links": [
-      {
-        "title": "AP is calling Israel attack on Lebanon an invasion . What does that mean and why does it matter ? ",
-        "url": "https://www.seattletimes.com/nation-world/world/ap-is-calling-israels-attack-on-lebanon-an-invasion-what-does-that-mean-and-why-does-it-matter/"
-      },
-      {
-        "title": "AP is calling Israel attack on Lebanon an invasion . What does that mean and why does it matter ? ",
-        "url": "https://www.clickondetroit.com/news/world/2026/03/26/ap-is-calling-israels-attack-on-lebanon-an-invasion-what-does-that-mean-and-why-does-it-matter/"
-      },
-      {
-        "title": "AP is calling Israel attack on Lebanon an invasion . What does that mean and why does it matter ? ",
-        "url": "https://isp.netscape.com:443/news/world/story/0001/20260326/2e22f39ce455f859483463550c0725f0"
-      },
-      {
-        "title": "AP is calling Israel attack on Lebanon an invasion . What does that mean and why does it matter ? ",
-        "url": "https://www.wboc.com/news/international/ap-is-calling-israels-attack-on-lebanon-an-invasion-what-does-that-mean-and-why/article_fb9b37e9-7cae-5faa-9c49-b3004adfaf29.html"
-      },
-      {
-        "title": "Why AP is calling Israel attack on Lebanon an invasion",
-        "url": "https://www.wsbradio.com/news/world/ap-is-calling/IIQAPZBVGU6YTMYW3PSAUTUU5E/"
-      }
-    ]
-  },
-  {
     "pair": "Iran vs US",
     "last_seen_at": null,
-    "articles_6h": 6,
-    "sources_6h": 6,
-    "score": 18,
+    "articles_6h": 5,
+    "sources_6h": 5,
+    "score": 15,
     "top_links": [
       {
         "title": "The US would need a million troops to control Iran not the few thousands currently on their way",
@@ -44,16 +15,16 @@
         "url": "https://www.aol.co.uk/articles/us-million-troops-control-iran-141910149.html"
       },
       {
-        "title": "Iran claims ONE MILLION fighters are primed for US invasion",
-        "url": "https://www.dailymail.co.uk/news/article-15682327/Iran-threatens-NUCLEAR-bomb-regime-claims-one-million-fighters-ready-US-ground-invasion.html"
+        "title": "More than 300 US troops wounded in Trump Iran war as grim battlefield reality emerges amid ground invasion fears",
+        "url": "https://www.dailymail.co.uk/news/article-15686169/centcom-troops-wounded-trump-iran-war.html"
       },
       {
         "title": "Iran mobilises over 1 million ground troops to counter US invasion threat",
         "url": "https://article.wn.com/view/2026/03/27/Iran_mobilises_over_1_million_ground_troops_to_counter_US_in/"
       },
       {
-        "title": "Iran takes call on nuclear action against US ;  one million fighter ready for ground invasion",
-        "url": "https://www.hindustantimes.com/world-news/us-news/iran-takes-call-on-nuclear-action-against-us-one-million-fighters-ready-for-ground-invasion-101774554734499.html"
+        "title": "Iran calls for nuclear action against US ;  one million fighter ready for ground invasion",
+        "url": "https://freerepublic.com/focus/f-news/4372347/posts"
       }
     ]
   }
