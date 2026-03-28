@@ -2,9 +2,9 @@
   {
     "pair": "Iran vs US",
     "last_seen_at": null,
-    "articles_6h": 5,
-    "sources_6h": 5,
-    "score": 15,
+    "articles_6h": 6,
+    "sources_6h": 6,
+    "score": 18,
     "top_links": [
       {
         "title": "The US would need a million troops to control Iran not the few thousands currently on their way",
@@ -15,16 +15,16 @@
         "url": "https://www.aol.co.uk/articles/us-million-troops-control-iran-141910149.html"
       },
       {
+        "title": "Iran latest : US troops wounded in missile attack at Saudi air base , AP reports",
+        "url": "https://www.fox4news.com/news/iran-latest-israel-expand-attack-iran-trump-delays-deadline-strait-hormuz"
+      },
+      {
         "title": "More than 300 US troops wounded in Trump Iran war as grim battlefield reality emerges amid ground invasion fears",
         "url": "https://www.dailymail.co.uk/news/article-15686169/centcom-troops-wounded-trump-iran-war.html"
       },
       {
         "title": "Iran mobilises over 1 million ground troops to counter US invasion threat",
         "url": "https://article.wn.com/view/2026/03/27/Iran_mobilises_over_1_million_ground_troops_to_counter_US_in/"
-      },
-      {
-        "title": "Iran calls for nuclear action against US ;  one million fighter ready for ground invasion",
-        "url": "https://freerepublic.com/focus/f-news/4372347/posts"
       }
     ]
   }
