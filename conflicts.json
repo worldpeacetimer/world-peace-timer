@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "pair": "Russia vs Ukraine",
+    "last_seen_at": null,
+    "articles_6h": 9,
+    "sources_6h": 9,
+    "score": 27,
+    "top_links": [
+      {
+        "title": "Russia Continues Drone Strikes on Ukraine Despite Supposed Truce",
+        "url": "https://www.breitbart.com/europe/2026/04/11/russia-continues-drone-strikes-on-ukraine-despite-supposed-orthodox-easter-truce/"
+      },
+      {
+        "title": "Orthodox Easter truce falters as Ukraine says Russia continues drone strikes",
+        "url": "https://www.dailyadvance.com/news/world/orthodox-easter-truce-falters-as-ukraine-says-russia-continues-drone-strikes/article_4cbd4c84-103a-5ec5-87c5-687c711ede7f.html"
+      },
+      {
+        "title": "Orthodox Easter truce falters as Ukraine says Russia continues drone strikes – Winnipeg Free Press",
+        "url": "https://www.winnipegfreepress.com/breakingnews/2026/04/11/russian-strikes-on-odesa-kill-2-ahead-of-orthodox-easter-ceasefire"
+      },
+      {
+        "title": "Orthodox Easter truce falters as Ukraine says Russia continues drone strikes despite ceasefire",
+        "url": "https://www.union-bulletin.com/news/world/orthodox-easter-truce-falters-as-ukraine-says-russia-continues-drone-strikes-despite-ceasefire/article_97eba50e-9c21-57eb-b62e-8a3e6daaaec1.html"
+      },
+      {
+        "title": "Orthodox Easter truce falters as Ukraine says Russia continues drone strikes",
+        "url": "https://www.ckom.com/2026/04/11/orthodox-easter-truce-falters-as-ukraine-says-russia-continues-drone-strikes/"
+      }
+    ]
+  }
+]
