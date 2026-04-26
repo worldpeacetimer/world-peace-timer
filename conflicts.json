@@ -2,9 +2,9 @@
   {
     "pair": "Russia vs Ukraine",
     "last_seen_at": null,
-    "articles_6h": 9,
-    "sources_6h": 9,
-    "score": 27,
+    "articles_6h": 7,
+    "sources_6h": 7,
+    "score": 21,
     "top_links": [
       {
         "title": "Russia invasion into Ukraine causes setbacks at Chernobyl",
@@ -20,11 +20,11 @@
       },
       {
         "title": "Russia invasion into Ukraine causes setbacks at Chernobyl",
-        "url": "https://www.wesh.com/article/ukrainians-reduce-risks-chernobyl-russia-invaded-war/71125769"
+        "url": "https://www.kcra.com/article/ukrainians-reduce-risks-chernobyl-russia-invaded-war/71125769"
       },
       {
         "title": "Russia invasion into Ukraine causes setbacks at Chernobyl",
-        "url": "https://www.kcra.com/article/ukrainians-reduce-risks-chernobyl-russia-invaded-war/71125769"
+        "url": "https://www.wdsu.com/article/ukrainians-reduce-risks-chernobyl-russia-invaded-war/71125769"
       }
     ]
   }
