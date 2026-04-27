@@ -2,10 +2,14 @@
   {
     "pair": "Russia vs Ukraine",
     "last_seen_at": null,
-    "articles_6h": 12,
-    "sources_6h": 12,
-    "score": 36,
+    "articles_6h": 13,
+    "sources_6h": 13,
+    "score": 39,
     "top_links": [
+      {
+        "title": "North Korea Opens Memorial Museum for Troops Killed in Russia - Ukraine War",
+        "url": "https://www.military.com/daily-news/2026/04/27/north-korea-opens-memorial-museum-troops-killed-russia-ukraine-war.html"
+      },
       {
         "title": "North Korea opens memorial museum for troops killed in Russia - Ukraine war",
         "url": "https://www.arabnews.com/node/2641413/world"
@@ -21,10 +25,6 @@
       {
         "title": "North Korea opens memorial museum for troops killed in Russia - Ukraine war",
         "url": "https://isp.netscape.com:443/news/world/story/0001/20260426/7c010fe1ded78fc45167c4fbab17ec92"
-      },
-      {
-        "title": "North Korea opens memorial museum for troops killed in Russia - Ukraine war",
-        "url": "https://www.manilatimes.net/2026/04/27/world/north-korea-opens-memorial-museum-for-troops-killed-in-russia-ukraine-war/2328959"
       }
     ]
   }
