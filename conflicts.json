@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "pair": "Germany vs US",
+    "last_seen_at": null,
+    "articles_6h": 5,
+    "sources_6h": 5,
+    "score": 15,
+    "top_links": [
+      {
+        "title": "US to withdraw about 5 , 000 troops from Germany",
+        "url": "https://www.rte.ie/news/europe/2026/0502/1571408-us-germany/"
+      },
+      {
+        "title": "നാറ്റോയിൽ ഭിന്നത രൂക്ഷം ; ജർമനിയിൽനിന്ന് യു . എസ് 5000 സൈനികരെ പിൻവലിക്കും | US to withdraw 5 , 000 troops from Germany",
+        "url": "https://www.madhyamam.com/world/us-to-withdraw-5000-troops-from-germany-1516259"
+      },
+      {
+        "title": "US to withdraw about 5 , 000 troops from Germany",
+        "url": "https://www.gjsentinel.com/news/national/us-to-withdraw-about-5-000-troops-from-germany/article_67822a89-86c9-5ed9-885e-0d590240b320.html"
+      },
+      {
+        "title": "US to withdraw 5 , 000 troops from Germany in next 6 - 12 months , fulfilling Trump threat",
+        "url": "https://www.wpxi.com/news/local/us-withdraw-5000-troops-germany-next-6-12-months-fulfilling-trumps-threat/6GYK5TMZFFFJ7DTSQ4BKMSVHXU/"
+      },
+      {
+        "title": "US to withdraw 5 , 000 troops from Germany in next 6 - 12 months , fulfilling Trump threat",
+        "url": "https://www.asiaone.com:443/world/us-withdraw-5000-troops-germany-next-6-12-months-fulfilling-trumps-threat"
+      }
+    ]
+  }
+]
