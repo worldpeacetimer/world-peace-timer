@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "pair": "Russia vs Ukraine",
+    "last_seen_at": null,
+    "articles_6h": 5,
+    "sources_6h": 5,
+    "score": 15,
+    "top_links": [
+      {
+        "title": "Russia attacks Ukraine with nuclear - capable missile for the third time since war began",
+        "url": "https://www.washingtonexaminer.com/news/world/4580915/russia-attacks-ukraine-nuclear-capable-missile-third-time-since-war-began/"
+      },
+      {
+        "title": "Russia Kills Four In Massive Ukraine Attack Using Nuclear - Capable Missile",
+        "url": "https://www.channelstv.com/2026/05/24/russia-kills-four-in-massive-ukraine-attack-using-nuclear-capable-missile/"
+      },
+      {
+        "title": "Russia kills 4 in massive Ukraine attack using nuclear - capable missile",
+        "url": "https://www.channelnewsasia.com/world/russia-ukraine-attack-nuclear-capable-missile-6138876"
+      },
+      {
+        "title": "School , residential buildings hit as Russia pounds Ukraine capital Kyiv with missiles , drones ; 1 dead",
+        "url": "https://timesofindia.indiatimes.com/world/europe/school-residential-buildings-hit-as-russia-pounds-ukraine-capital-kyiv-with-missiles-drones-1-dead/articleshow/131288343.cms"
+      },
+      {
+        "title": "Four dead and more than 80 injured in Ukraine after Russia pummels Kyiv with 700 missiles and drones in overnight attack",
+        "url": "https://www.dailymail.com/news/article-15844365/Four-dead-80-injured-Ukraine-Russia-pummels-Kyiv-700-missiles-drones-overnight-attack-saw-buildings-engulfed-flames.html"
+      }
+    ]
+  }
+]
