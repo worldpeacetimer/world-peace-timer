@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "pair": "Ukraine vs US",
+    "last_seen_at": null,
+    "articles_6h": 5,
+    "sources_6h": 5,
+    "score": 15,
+    "top_links": [
+      {
+        "title": "Zelenskyy says he pressing US for more Patriot missiles for Ukraine to counter Russian strikes",
+        "url": "https://wtop.com/russia-ukraine-war-news/2026/05/zelenskyy-heads-to-sweden-as-ukraine-touts-drone-expertise-honed-in-war-with-russia/"
+      },
+      {
+        "title": "Zelenskyy Says He Pressing US for More Patriot Missiles for Ukraine to Counter Russian Strikes",
+        "url": "https://www.military.com/zelenskyy-says-hes-pressing-us-for-more-patriot-missiles-for-ukraine-to-counter-russian-strikes"
+      },
+      {
+        "title": "Zelenskyy says he pressing US for more Patriot missiles for Ukraine to counter Russian strikes",
+        "url": "https://www.ksat.com/news/2026/05/28/zelenskyy-says-hes-pressing-us-for-more-patriot-missiles-for-ukraine-to-counter-russian-strikes/"
+      },
+      {
+        "title": "Zelenskyy says he pressing US for more Patriot missiles for Ukraine to counter Russian strikes",
+        "url": "https://www.wboc.com/news/international/zelenskyy-says-hes-pressing-us-for-more-patriot-missiles-for-ukraine-to-counter-russian-strikes/article_0b3abdfb-2c76-50cd-99f4-b1710610e8ae.html"
+      },
+      {
+        "title": "Zelenskyy says he pressing US for more Patriot missiles for Ukraine to counter Russian strikes",
+        "url": "https://www.wral.com/news/ap/63efe-zelenskyy-heads-to-sweden-as-ukraine-touts-drone-expertise-honed-in-war-with-russia/"
+      }
+    ]
+  }
+]
