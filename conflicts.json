@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "pair": "Iran vs Israel",
+    "last_seen_at": null,
+    "articles_6h": 24,
+    "sources_6h": 24,
+    "score": 72,
+    "top_links": [
+      {
+        "title": "Israel for troops in southern Lebanon , even as Rubio defends Iran deal",
+        "url": "http://www.clevelandstar.com/news/279145444/israel-says-its-troops-will-remain-in-southern-lebanon-trips-rubio"
+      },
+      {
+        "title": "Israel for troops in southern Lebanon , even as Rubio defends Iran deal",
+        "url": "http://www.parisguardian.com/news/279145444/israel-says-its-troops-will-remain-in-southern-lebanon-trips-rubio"
+      },
+      {
+        "title": "Israel for troops in southern Lebanon , even as Rubio defends Iran deal",
+        "url": "http://www.stlouisstar.com/news/279145444/israel-says-its-troops-will-remain-in-southern-lebanon-trips-rubio"
+      },
+      {
+        "title": "Israel for troops in southern Lebanon , even as Rubio defends Iran deal",
+        "url": "http://www.hawaiitelegraph.com/news/279145444/israel-says-its-troops-will-remain-in-southern-lebanon-trips-rubio"
+      },
+      {
+        "title": "Israel for troops in southern Lebanon , even as Rubio defends Iran deal",
+        "url": "http://www.singaporestar.com/news/279145444/israel-says-its-troops-will-remain-in-southern-lebanon-trips-rubio"
+      }
+    ]
+  }
+]
