@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "pair": "Iran vs US",
+    "last_seen_at": null,
+    "articles_6h": 31,
+    "sources_6h": 31,
+    "score": 93,
+    "top_links": [
+      {
+        "title": "Trump to attend dignified transfer as 4 US troops killed in Iran war return home",
+        "url": "https://katu.com/news/nation-world/trump-to-attend-dignified-transfer-as-4-us-troops-killed-in-iran-war-return-home"
+      },
+      {
+        "title": "Trump to attend dignified transfer as 4 US troops killed in Iran war return home",
+        "url": "https://wset.com/news/nation-world/trump-to-attend-dignified-transfer-as-4-us-troops-killed-in-iran-war-return-home"
+      },
+      {
+        "title": "Trump to attend dignified transfer as 4 US troops killed in Iran war return home",
+        "url": "https://13wham.com/news/nation-world/trump-to-attend-dignified-transfer-as-4-us-troops-killed-in-iran-war-return-home"
+      },
+      {
+        "title": "Trump to attend dignified transfer as 4 US troops killed in Iran war return home",
+        "url": "https://wwmt.com/news/nation-world/trump-to-attend-dignified-transfer-as-4-us-troops-killed-in-iran-war-return-home"
+      },
+      {
+        "title": "Trump to attend dignified transfer as 4 US troops killed in Iran war return home",
+        "url": "https://katv.com/news/nation-world/trump-to-attend-dignified-transfer-as-4-us-troops-killed-in-iran-war-return-home"
+      }
+    ]
+  }
+]
