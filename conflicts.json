@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "pair": "Russia vs Ukraine",
+    "last_seen_at": null,
+    "articles_6h": 10,
+    "sources_6h": 10,
+    "score": 30,
+    "top_links": [
+      {
+        "title": "Kyiv hit with missiles ; Russia and Ukraine both report civilians killed in strikes",
+        "url": "https://www.internazionale.it/ultime-notizie-reuters/2026/07/26/overnight-russian-attack-triggers-fires-in-ukrainian-capital-kyiv"
+      },
+      {
+        "title": "Kyiv hit with missiles ; Russia and Ukraine both report civilians killed in strikes",
+        "url": "https://www.yahoo.com/news/articles/overnight-russian-attack-triggers-fires-225045209.html"
+      },
+      {
+        "title": "Zelenskyy Says Russia Wants To Bring North Korean Troops Into Ukraine War Again",
+        "url": "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/07/ukraine-260725-rferl01.htm"
+      },
+      {
+        "title": "Zelensky Says Russia Seeks 30 , 000 More North Korean Troops for Ukraine War",
+        "url": "https://www.khaama.com/zelensky-says-russia-seeks-30000-more-north-korean-troops-for-ukraine-war/"
+      },
+      {
+        "title": "Zelenskyy says Russia seeks 30 , 000 extra North Korean troops for Ukraine war",
+        "url": "https://www.thehindu.com/news/international/zelenskyy-says-russia-seeks-30000-extra-north-korean-troops-for-ukraine-war/article71270092.ece"
+      }
+    ]
+  }
+]
